@@ -88,3 +88,21 @@ default['tensorflow']['serving']['version']      = "1.8.0"
 default['openmpi']['version']          = "openmpi-3.1.0.tar.gz"
 
 
+#
+#MPI service
+#
+
+default['mpi']['mpirun_exc']                         = "/usr/bin/mpirun"
+default['mpi']['dir']                                = node['install']['dir'].empty? ? "/srv/hops" : node['install']['dir']
+default['mpi']['base_dir']                           = node['mpi']['dir'] + "/mpi"
+default['mpi']['log_dir']                            = node['mpi']['base_dir'] + "/logs"
+default['mpi']['run_dir']                            = node['mpi']['base_dir'] + "/run"
+default['mpi']['example_dir']                        = node['mpi']['base_dir'] + "/examples"
+default['mpi']['host_file']                          = node['mpi']['base_dir'] + "/hostFile"
+default['mpi']['hosts']                              = [['192.168.71.101', 'slots=2', 'max_slots=2'],  ['192.168.71.102', 'slots=2', 'max_slots=2'], ['192.168.71.103', 'slots=2', 'max_slots=2']]
+default['mpi']['log_retention']                      = 90   # Days
+default['mpi']['ps_term_wait']                       = 5    # Sec
+default['mpi']['log_cleanup_interval']               = 1440 # Min
+default['mpi']['ps_monitoring_interval']             = 10   # Min
+default['mpi']['resource_monitoring_interval']       = 5    # Min
+default['mpi']['max_log_size_to_send']               = 5    # Mb
