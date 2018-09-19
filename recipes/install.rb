@@ -74,46 +74,6 @@ if node['tensorflow']['mpi'].eql? "true"
 
   end
 
-  directory node['mpi']['base_dir'] do
-    owner node['glassfish']['user']
-    group node['hops']['group']
-    mode "750"
-    action :create
-    not_if { File.directory?("#{node['mpi']['base_dir']}") }
-  end
-
-  directory node['mpi']['log_dir']  do
-    owner node['glassfish']['user']
-    group node['glassfish']['group']
-    mode "700"
-    action :create
-    not_if { File.directory?("#{node['mpi']['log_dir']}") }
-  end
-
-  directory node['mpi']['run_dir'] do
-    owner node['glassfish']['user']
-    group node['hops']['group']
-    mode "710"
-    action :create
-    not_if { File.directory?("#{node['mpi']['run_dir']}") }
-  end
-
-  directory node['mpi']['example_dir'] do
-    owner node['glassfish']['user']
-    group node['hops']['group']
-    mode "750"
-    action :create
-  end
-
-  template node['mpi']['host_file'] do
-    source "hostFile.erb"
-    owner node['glassfish']['user']
-    group node['hops']['group']
-    mode 750
-    action :create
-    variables :hosts => node['mpi']['hosts']
-  end
-
   template "/etc/openmpi/openmpi-mca-params.conf" do
     source "openmpi-mca-params.conf.erb"
     action :create
