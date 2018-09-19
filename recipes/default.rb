@@ -314,11 +314,11 @@ kagent_keys "#{homedir}" do
   action :get_publickey
 end
 
-homedir = "/home/#{node['hops']['yarn']['user']}"
+homedir = "/home/#{node['hops']['yarnapp']['user']}"
 
 kagent_keys "#{homedir}" do
-  cb_user "#{node['hops']['yarn']['user']}"
-  cb_group "#{node['hops']['yarn']['group']}"
+  cb_user "#{node['hops']['yarnapp']['user']}"
+  cb_group "#{node['hops']['yarnapp']['group']}"
   cb_name "tensorflow"
   cb_recipe "default"
   action :get_publickey
